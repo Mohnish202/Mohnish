@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Minecraft 3d</title>
+	<style type="text/css">
+		    body {
+		    	    margin : 0;
+		    }
+		    #cursor {
+		    	    position: absolute;
+		    	    width: 3%;
+		    }
+	</style>	    
+
+</head>
+<body>
+	<script src = "three.js"></script>
+	<script src = "perline.js"></script>
+	<script src = "PointerLockControls.js"></script>
+	<script src = "stats.js"></script>
+
+	<img src = "cursor.png" id = "cursor">
+
+	<script type="text/javascript">
+
+            // Cursor
+            var cursor = document.getElementById("cursor");
+            cursor.style.left = ((0.5 * window.innerWidth) - (0.5 * cursor.width)).toString() + "px";
+            cursor.style.top = ((0.5 * window.innerHeight) - (0.5 * cursor.height)).toString() + "px";
+
+            // Perfomance Stats
+            var stats = new Stats();
+            stats.ShowPanel(0); // 0:fps, 1:ms, 2:mb, 3+:custom
+            document.body.appenChild(stats.dom);
+
+            function animate(){
+            	    stats.begin();
+
+            	    // monitored code goes between this called functions
+
+            	    stats.end();
+
+            	    requestAnimationFrame(animate);
+            }
+
+            requestAnimationFrame(animate);
+
+            var worldGen = Math.random();
+            var biomeGen = Math.random();
+            var treesGen = Math.random();
+
+            var scene = new THREE.Scene();
+            Scene.background = new THREE.Color(0x00ffff);
+            scene.fog = new THREE.Fog(0x00ffff, 10, 650);
+            var renderer = new THREE.WebGLRenderer();
